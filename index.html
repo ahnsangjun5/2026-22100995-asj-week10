@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style>
+
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=UnifrakturMaguntia&display=swap');
+
+		.unifrakturmaguntia-regular {
+	  font-family: "UnifrakturMaguntia", cursive;
+	  font-weight: 400;
+	  font-style: normal;
+	}
+
+
+	  @font-face {
+	    font-family: 'HeirOfLight';
+	    src: url('HeirofLightBold.ttf') format('truetype');
+	    font-weight: bold;
+	    font-style: normal;
+		}
+
+		.HeirOfLight{font-family: 'HeirOfLight';
+			font-weight: bold;
+			font-style: normal;}
+
+		
+
+
+		@font-face {
+	    font-family: 'Pretendard-Regular';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/	pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
+	    font-weight: 400;
+	    font-display: swap;
+		}
+
+		@font-face {
+	    font-family: 'Pretendard-Bold';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/	pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
+	    font-weight: 700;
+	    font-display: swap;
+		}
+
+		@font-face {
+	    font-family: 'OldLondonAlternate';
+	    src: url('fonts/OldLondonAlternate.ttf') format('truetype');
+	    font-weight: 400 !important;
+	    font-style: regular;
+	    -webkit-font-smoothing: antialiased;
+   		-moz-osx-font-smoothing: grayscale;
+   		text-stroke: 0px transparent !important;
+		}
+		
+		/*css초기화*/
+		body,h1,h2,h3,p,ol,ul{margin: 0; padding: 0;}
+
+
+		h1{font-size: 11rem;
+			padding: 300px 20px;
+			text-align: center;
+			margin: 0 auto;
+			width: 100%;
+			max-width: 100vw;
+			box-sizing: border-box;}
+
+		h2{color: white;
+			font-size: 3.5rem;
+			padding:150px 50px;
+			line-height: 1.5;}
+
+		body{overflow-x: hidden;
+			font-family: pretendard-Regular;
+			width: 100% ;
+			background: white;}
+
+
+		.cursor-follower {
+	    position: fixed;
+	    width: 30px;
+	    height: 30px;
+	    background-color: white;
+	    border-radius: 50%;
+	    pointer-events: none;
+	    z-index: 999999;
+	    mix-blend-mode: difference;
+	    transition: transform 0.1s ease-out;
+	    transform: translate(-50%, -50%); /* 중심 맞추기 */
+	    will-change: transform;
+		}
+
+
+		/*nav 관련*/
+		nav{position:fixed;
+		    top:0;
+		    width:100%;
+		    height: 80px;
+		    background:rgba(0,0,0,0.1);
+		    backdrop-filter:blur(10px);
+			z-index: 999;}
+
+		.nav-inner{
+		    max-width:1400px;
+		    margin: 0 auto;
+		    padding:0px 50px;
+		    height: 80px;
+		    display:flex;
+		    justify-content:space-between;
+		    align-items:center;
+			}
+
+		.nav-menu{
+		    display:flex;
+		    list-style: none;
+		    gap: 70px;
+		    padding-left: 120px;
+			}
+
+		.nav-menu a{
+		    padding:5px 5px;
+		    text-decoration:none;
+		    color:white;
+			}
+	
+		.bgtransparent{background:rgba(0,0,0,0.5);
+    			backdrop-filter: blur(10px);
+				position: fixed;
+				top: 0;
+    			width: 100%;
+    			}
+
+    	.logo{margin: 0;
+    		white-space: nowrap;
+    		color: white;
+    		font-family: UnifrakturMaguntia;
+    		font-size: 1.5rem;
+    		}
+
+		ul{list-style: none;}
+
+		li,a{text-decoration: none;
+			color: white;}
+
+		a:hover{background:#970907; color:white;
+			transition: all 0.5s;
+			text-decoration: none;
+			}
+
+		section{
+			word-break: keep-all;
+			}
+
+		.container{
+	    width: 100%;
+	    margin: 0 auto;
+	    padding: 0 50px;
+		}
+
+		.text-right{
+	    text-align: right;
+		}
+	
+		.text-left{
+	    text-align: left;
+		}
+	
+
+		/*top*/
+		#video-container {
+	    position: fixed;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100vh;
+	    z-index: 9999;
+	    background-color: black;
+	    transition: opacity 2s ease;
+		}
+	
+		#opening-video {
+	    width: 100%;
+	    height: 100%;
+	    object-fit: cover; 
+		}
+	
+		#top.cover {
+	    transition: opacity 2s ease; 
+		}
+		
+		.fade-out {
+		    opacity: 0;
+		    pointer-events: none;
+		}
+		
+		.fade-in {
+		    opacity: 1 !important;
+		}
+		.pcenter{padding: 30px 0px;
+			text-align: center;
+			width: 800px;
+			margin: auto;
+			font-size: 1.1rem;}
+
+		.cover{background: url(coverimg_2.png);
+			background-size: cover;
+			}
+
+		.t_red{color: #a00e0e;
+		filter: url(#rugged-filter);}
+
+
+		/*offer*/
+		.black{background-color: black;
+			color: white;}
+		.bgblack{background-color: black;
+			color: white;
+			padding-bottom: 300px;
+			}	
+
+		.text_attach{padding-bottom: 0px;}
+
+		.life{font-size: 3.3rem;}
+		
+		.line-text{
+   			 display:flex;
+   			 align-items:center;
+   			 gap:8px;
+   			 padding-top:0px;
+   			margin-top: -145px;}
+
+		.line{
+		    flex:0.3;
+		    height:3px;
+		    background:white;}
+
+		.small{
+		    font-size:3.5rem;
+		    }
+
+		.text-section{
+   		 position: relative;
+   		 width: 100%;
+	    max-width: 2000px;
+	    min-height: 900px;
+	    max-height: 900px;
+	    margin: 0 auto;}
+
+		.text-section::after{
+		    content: "";
+		    position: absolute;
+
+
+		    right: 0;
+		    bottom: 0;
+
+		    width: 1200px;
+		    min-height: 850px;
+		    max-height: 850px;
+
+		    background: url("Regret.jpg") no-repeat;
+		    background-position: right bottom;
+		    background-size: 650px auto;
+		    margin-bottom:200px ;
+		}
+
+		
+		.contents{
+		    position: relative;
+		    z-index: 1;
+		    padding-top: 100px;
+		    padding-bottom: 200px;
+
+		}
+
+	
+
+		
+		@media (max-width: 900px){
+		    .text-section::after{
+		        position: static;
+		        display: block;
+		        margin: 50px auto 0;
+		        width: 80%;
+		        height: 400px;
+		    }
+			}
+
+		.chanceimg{background: url(aicron_019d90e9-88df-7651-b953-a8ac256b8253.png);
+			position: relative;
+			background-color: #970907;
+			background-position: center;   
+   			 background-size: 800px;        
+    		background-repeat: no-repeat;
+    		margin: auto;
+    		width: 100%;}
+
+    	.center{width: 100%;
+    		margin: auto;}
+
+
+    	.bgblack_2{background-color: black;
+			color: white;
+			}
+
+		.white{background-color: white;
+			color: black;}
+		
+		.watch-animation-container {
+		    height: 300vh; 
+		    width: 100%;
+		    
+		}
+		
+		.sticky-frame {
+		    position: sticky;
+		    top: 0;
+		    height: 100vh;
+		    overflow: hidden;
+		}
+		
+		
+		.fixed-text-area {
+		    position: absolute;
+		    top: 40%; 
+		    left: 50%;
+		    transform: translate(-50%, -50%);
+		    z-index: 2;
+		    text-align: center;
+		    width: 100%;
+		}
+		
+		/* 시계: 시작할 때 gate 뒤에 숨음 */
+		.rotating-watch {
+		    position: absolute;
+		    width: auto;
+		    height: 60vw;
+		    left: 55%;
+		    top: 120%; /* 화면 바로 아래 대기 */
+		    transform: translate(-50%, 0) rotate(-180deg);
+		    z-index: 10;
+		    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.3));
+			}
+		
+		
+		.watch-gate {
+		    position: absolute;
+		    bottom: 0;
+		    width: 100%;
+		    height: 15vh;
+		    background-color: black;
+		    z-index: 10; /* 시계보다 위 */
+			}
+		
+		
+		.information {
+		    background-color: black;
+		    color: white;
+		    padding: 100px 0;
+		    position: relative;
+		    z-index: 20;
+		}
+
+		
+		.smallh2{color: white;
+			text-align: center;
+			font-size: 2rem;
+			margin: auto;
+			width: 1000px;
+			text-shadow:0 2px 8px rgba(0,0,0,0.6);}
+
+
+		.section-title{
+		    padding-top: 400px;     
+		    padding-bottom: 50px;   
+		}
+
+		.typo{padding: 250px 50px}
+
+		.endlessly{color: black;
+			text-align: center;
+			font-size: 1.2rem;
+			padding: 30px 0px;
+			width: 1000px;
+			margin: auto;
+			margin-bottom: 10px;
+			z-index: 20;}
+
+		.information{padding: 180px 100px;
+			padding-top: 50px;
+			text-align: center;}
+
+		.info_title{padding-bottom: 30px;
+			font-size: 1.7rem;
+			width: 600px;
+			margin: auto;}
+		.info_text{line-height: 1.9;
+			text-align: center;
+			font-size: 1.1rem;
+			width: 600px;
+			margin: auto;}
+
+
+
+		/*function*/
+		.t_black{color: black;}
+		
+		.align_right{padding-left: 730px;
+			padding-right: 200px;
+			padding-bottom: 70px;
+			width: 600px;}
+
+
+		
+		.maintext{font-size: 1.2rem;
+			line-height: 1.9;}
+		
+		.align_left{padding-left: 150px;
+			padding-bottom: 70px;
+			padding-right: 550px;
+			width: 600px;}
+		
+		.align_left_2{padding-left: 150px;
+			padding-bottom: 70px;
+			padding-right: 550px;}
+		
+		.space_pad{padding-top: 200px;
+			padding-bottom: 100px;
+			width: 100%;
+		}
+
+		.main-watch {
+	    position: absolute;
+	    left: -150px;    
+	    top: 55%;   
+	    transform: translateY(-50%);
+	    width: 1000px; 
+	    z-index: 10;
+	    transition: all 0.4s ease-in-out;
+		}
+
+		.triple-watch{
+	    position: absolute;
+	    right: 5%; 
+	    top: 60%;
+	    transform: translateY(-50%);
+	    width: 800px; 
+	    height: auto;
+	    transition: all 0.4s ease-in-out;
+		}
+		
+
+		/*condition*/
+
+		.h2_center{text-align: center;
+			padding-bottom: 70px;
+			width: 800px;
+			margin: auto;
+			padding-top: 0px;}
+
+		.align_center{text-align: center;
+					padding-bottom: 100px;
+					width: 800px;
+					margin: auto;}
+
+		.bgblack_3{background-color: black;
+			color: white;
+			padding-bottom: 300px;
+			padding-top: 100px;
+			z-index: 100;
+			position: relative;}
+
+		.abuse-container {
+	    position: sticky;
+	    width: 100vw;
+	    max-width: 1600px;
+	    height: 200px; 
+	    margin: 0 auto;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    overflow: visible;
+	    padding-top: 500px;
+
+		}
+
+		/* 공통 시계 스타일 */
+		.watch {
+		    position: absolute;
+		    height: auto;
+		    filter: grayscale(100%) contrast(1.4);
+		}
+		
+		/* 가운데 시계: 맨 뒤 (z-index: 1) */
+		.watch.front {
+		    width: 800px;
+		    z-index: 1;
+		    filter: brightness(0.8);
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%, -50%);
+		    filter: grayscale(100%) contrast(1.4);
+		}
+		
+		/* 중앙 텍스트: 중간 (z-index: 2) */
+		.abuse-text {
+		    position: relative;
+		    font-size: 8rem;
+		    color: #970907;
+		    z-index: 2;
+		    margin: 0 auto;
+		    margin-top: -370px;
+		    white-space: nowrap;
+		    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+		}
+		
+		/* 양 옆 시계: 맨 위 (z-index: 3) */
+		.watch.side {
+		    width: 800px;
+		    z-index: 3;
+		    top: 50%;
+		}
+		
+		/* 왼쪽 시계 배치 */
+		.watch.left {
+		    left: -230px;
+		    transform: translateY(-50%) rotate(45deg) scaleX(-1);		 /* 반전시켜서 대칭 만들기 */
+		}
+		
+		/* 오른쪽 시계 배치 */
+		.watch.right {
+		    right: -230px;
+		    transform: translateY(-50%) rotate(-45deg);
+		}
+		
+		/* 아래쪽 텍스트 정보들 */
+		.warning-info {
+		    padding-top: 50px;
+		    text-align: center;
+
+		}
+		
+		/* 반응형 조절 */
+		@media (max-width: 1100px) {
+		    .abuse-text { font-size: 5rem; }
+		    .watch.front { width: 300px; }
+		    .watch.side { width: 250px; }
+		}
+
+		/*directions*/
+
+		.gallery-container {
+			max-width: none;
+		    padding-bottom: 150px;
+		    width: 100%;
+		    overflow: hidden;
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		}
+
+		.gallery-text{padding-top: 100px;
+			padding-bottom: 100px;}
+		
+		.photo-wrapper {
+		    position: relative;
+		    width: 100%;
+		    left: 47%;
+		    margin: 60px auto 0;
+		    display: flex;
+		    flex-wrap: wrap;
+		    justify-content: center;
+		    align-items: center;
+		    gap: 10px; /* 사진 사이 간격 */
+		    transform: translateX(-50%);
+		    padding-top: 150px;
+		}
+		
+		.photo {
+		    position: relative;
+		    width: 18vw;
+		    height: 25vw;
+		    min-width: 210px;
+		    min-height: 280px;
+		    background: #ccc;
+		    border-radius: 20px; /* 이미지처럼 둥근 모서리 */
+		    overflow: hidden;
+		    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+		    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+		    z-index: 5;
+		    cursor: pointer;
+		}
+		
+		.photo img {
+		    width: 100%;
+		    height: 100%;
+		    object-fit: cover;
+		}
+		
+		
+		/* 첫 번째 줄 */
+		.p1 { transform: rotate(-8deg) translateY(20px); }
+		.p2 { transform: rotate(5deg) translateY(-10px); }
+		.p3 { transform: rotate(-3deg) translateY(15px); }
+		.p4 { transform: rotate(7deg) translateY(-5px); }
+		.p5 { transform: rotate(-5deg) translateY(10px); }
+		
+		/* 두 번째 줄 (살짝 위로 겹치게) */
+		.p6 { transform: rotate(6deg) translateY(-20px); margin-left: -		20px; }
+		.p7 { transform: rotate(-7deg) translateY(10px); }
+		.p8 { transform: rotate(4deg) translateY(-15px); }
+		.p9 { transform: rotate(-4deg) translateY(15px); }
+		.p10 { transform: rotate(8deg) translateY(-10px); margin-left: -		10px; }
+		
+		/* --- 마우스 호버 효과 --- */
+		.photo:hover {
+		    transform: scale(1.1) rotate(0deg) translateY(-20px) 		!important; /* 1.1배 확대 및 똑바로 서기 */
+		    z-index: 100; /* 무조건 맨 앞으로 */
+		    box-shadow: 0 25px 50px rgba(0,0,0,0.3); /* 그림자 진해짐 */
+		    filter: brightness(1.05); /* 살짝 밝아짐 */
+		}
+		
+		/* 반응형 모바일 */
+		@media (max-width: 900px) {
+		    .photo {
+		        width: 150px;
+		        height: 210px;
+		    }
+		}
+
+		/*warning*/
+		.warn_bg{
+			background: url(devil-vid.gif);
+			background-size: 90%;
+			background-position: center;
+			height: 1000px;
+			padding-top: 100px;}
+		
+		.align_right_2{width:600px;
+			margin-left: auto;
+			margin-right: 150px;
+			padding: 20px 30px;
+			background-color: #970907;
+			color: black;
+			}
+		
+		.t_white{color: white;}
+		
+		.button{background: black;
+	    border: none;
+	    cursor: pointer;
+	    font-family: 'Pretendard-Bold';
+	    padding: 10px 20px;
+	    color: whitesmoke;
+	    display: block;
+	    margin: 0 auto;
+	    border-radius: 999px;
+		width: 130px;
+		text-align: center;
+		margin-bottom: 200px;
+		margin-top: 100px;}
+		
+		.abuse{width: 1000px;
+			margin: auto;
+			font-size: 5rem;
+			color: #970907;
+			text-align: center;}
+
+		/*footer*/
+		.video-overlay {
+	    display: none; /* 처음에는 숨김 */
+	    position: fixed;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    background: rgba(0, 0, 0, 0.9); /* 배경을 어둡게 */
+	    z-index: 10000; /* 최상단 배치 */
+	    justify-content: center;
+	    align-items: center;
+		}
+	
+		.video-content {
+		    position: relative;
+		    width: 100%;
+		    
+			}
+	
+		.close-btn {position: absolute;
+	    top: 50px;      /* 상단 여백 */
+	    right: 30px;    /* 우측 여백 */
+	    background: none;
+	    border: none;
+	    outline: none;
+	    color: #ffffff; 
+	    font-size: 30px; 
+	    font-weight: 200; 
+	    line-height: 1;
+	    cursor: pointer;
+	    z-index: 10002;
+	    transition: opacity 0.3s ease;
+		}
+
+		video::-webkit-media-controls {
+		    display: none !important;
+			}
+		
+		video::-webkit-media-controls-enclosure {
+		    display: none !important;
+			}
+		
+		video::-webkit-media-controls-panel {
+		    display: none !important;
+			}
+		video {
+		    pointer-events: none;
+			}
+
+
+
+		.animation-group {
+		    display: flex;
+		    width: max-content; 
+		    animation: scroll-left 12s linear infinite;
+		}
+		
+		@keyframes scroll-left {
+		    0% {transform: translateX(0);}
+		    100% {transform: translateX(-50%);}
+		}
+
+		.animation-item {
+		    font-size: 8rem;
+		    font-weight: 800;
+		    flex-shrink: 0;
+		    margin-right: 0; 
+		    display: flex;
+		    align-items: center;
+		    padding-bottom: 100px;
+		}
+	
+
+		
+		.footer-bg {position: absolute;
+		    width: 100%;
+		    height: auto;
+		    background-image: url('coverimg.jpg'); 
+		    background-size: cover;
+		    background-position: center;}
+
+		.footer-top {
+		  display: flex;
+		  justify-content: space-between;
+		  align-items: flex-start;
+		  flex-wrap: wrap;
+		  gap: 20px;
+		padding-bottom: 100px;}
+		
+		.footer_align_right{
+			padding-right: 100px;
+			padding-top: 50px;
+			width: 600px;
+			margin: 0;
+			text-align: right;}
+
+		.footer_title{font-size: 2.2rem;
+			padding-left: 50px;
+			padding-top: 50px;
+			width: 200px;}
+
+		.footer_copyright{padding-left: 50px;
+			padding-bottom: 50px;
+			line-height: 1.3;}
+
+		 .wrap{width: 1500px; margin: auto; position: relative;}
+
+		@keyframes fadeInUp {
+    from {opacity: 0;
+        transform: translateY(50px);}
+    to {opacity: 1;transform: translateY(0);}
+	}
+
+.reveal {opacity: 0;}
+
+/* active 클래스가 붙으면 1초 동안 스크롤 속도와 무관하게 재생 */
+.reveal.active {animation: fadeInUp 1s ease-out forwards;}
+
+	</style>
+</head>
+<body>
+	
+	<div class="cursor-follower"></div>
+	
+	<nav>
+		<div class="nav-inner">
+			<div class="logo">
+				<h3 class="unifrakturmaguntia-regular">Ouroborus Watch</h3>
+			</div>
+			<ul class="nav-menu">
+				<li><a href="#top">TOP</a></li>
+				<li><a href="#offer">OFFER</a></li>
+				<li><a href="#function">FUNCTION</a></li>
+				<li><a href="#condition">CONDITION</a></li>
+				<li><a href="#directions">DIRECTIONS</a></li>
+				<li><a href="#warning">WARNING</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div id="video-container">
+    <video id="opening-video" muted playsinline autoplay>
+        <source src="top_video.mp4" type="video/mp4">
+    </video>
+</div>
+	<section id="top" class="cover">
+		<div class="t_red">
+			<h1 class="unifrakturmaguntia-regular">Ouroborus Watch</h1>
+			<p class="pcenter">RETURNING TO THE PAST / CHANGE THE FUTURE / BUT YOU WILL PAY THE PRICE</p>
+		</div>
+	</section>
+	<section id="offer" class="black">
+		<div class="bgblack text-section wrap">
+			<div class="contents reveal">
+
+			<h2 class="text_attach">내 인생은 어디서부터 잘못된걸까<br>재미도 없고 의미도 없다</h2>
+
+			<div class="line-text">
+				<h2>포기하고 싶다</h2>
+				<div class="line"></div>
+				<h2 class="HeirOfLight life">삶에 미련이 없는 당신</h2>
+			</div>
+		</div>
+	</section>
+	<section class="black">
+		<div class="chanceimg reveal center">
+			<h2 class="smallh2">당신에게 재미있는 기회를 드립니다</h2>
+		</div>
+	</section>
+	<section class="black watch-animation-container">
+		<div class="wrap">
+			<h2 class="section-title reveal">새로운 삶의 기회를 누려보세요.</h2>
+		</div>
+	    <div class="sticky-frame white">
+	        <div class="fixed-text-area">
+	            <p class="endlessly">endlessly repeating the act of eating itself from the tail while simultaneously regenerating.</p>
+	            <h1 class="typo unifrakturmaguntia-regular"	>Ouroborus Watch</h1>
+	        </div>
+	
+	        <!-- 시계 -->
+	        <img src="front_up.png" class="rotating-watch" alt	="Ouroboros Watch">
+	
+	        <!-- 2. 중요: 시계가 출발할 때 숨겨줄 '입구' 역할의 가림막 	(텍스트 없음) -->
+	        <div class="watch-gate"></div>
+	    </div>
+	</section>
+	
+	<section>
+		<div class="bgblack_2 information">
+		    <h3 class="info_title HeirOfLight reveal">우로보로스 시계</h3>
+		    <p class="info_text reveal">
+			우로보로스는 그리스어로 “꼬리를 삼키는 자”라는 의미를 가지고 있습니다. 자신의 꼬리를 물고 삼키는 뱀이나 	용의 형상을 한 고대 상징입니다. 시작과 끝이 맞물려 있는 원형으로 영원성, 윤회, 끊임없이 재생되는 순환의 	의미를 담고 있습니다.</p>
+		</div>
+	</section>
+	<section id="function">
+		<div class="wrap space_pad">
+			<img src="front.png" class="main-watch">
+			<h2 class="t_black align_right HeirOfLight reveal">24시간 전으로 돌아갑니다</h2>
+			<p class="t_black align_right maintext reveal">사용법은 간단합니다. 오른쪽에 버튼을 누르면 누른 순간으로부터 정확히 24시간 전으로 돌아갑니다. 한번 누르면 절대 번복할 수 없습니다. 신중하게 누르세요.</p>
+		</div>
+	</section>
+	<section>
+		<div class="space_pad wrap">
+			<img src="3watch.png" class="triple-watch">
+			<h2 class="t_black align_left HeirOfLight reveal">사용 후 36시간이 지나야<br>재사용할 수 있습니다.</h2>
+			<p class="t_black align_left maintext reveal">24시간 전으로 돌아가고 나서 36시간 동안 사용이 불가능합니다. 즉 12시간의 텀이 존재하고 시간을 영원히 유지하는 것은 불가능합니다. 잘 계산해서 사용하시기를 권장드립니다.</p>
+		</div>
+	</section>
+	<section id="condition" class="bgblack_3">
+	    <div class="abuse-container reveal">
+	    
+	        <img src="backside.png" class="watch side left" alt="left watch">
+	        
+	      
+	        <img src="back.png" class="watch front" alt="	center watch">
+	        
+	      
+	        <h2 class="abuse-text unifrakturmaguntia-regular">DO NOT ABUSE</h2>
+	        
+	        
+	        <img src="backside.png" class="watch side right" alt="right watch">
+	    </div>
+	
+	    <div class="warning-info reveal">
+	        <h2 class="h2_center HeirOfLight">사용 후 3년 뒤에 죽습니다.</h2>
+	        <p class="align_center maintext">사용을 시작한 날로부터 3년 뒤에 당신은 죽게 됩니다. 미련 없이 3년 뒤에 죽을 각오가 되있는 분들만 시계를 사용해주시길 바랍니다. 한번 사용하게 되면 이 조건은 다시 되돌릴 수 없습니다.</p>
+	    </div>
+	</section>
+	<section id="directions" class="wrap gallery-container">
+		<div class="gallery-text reveal">
+			<h2 class="t_black align_left_2 HeirOfLight">사용법은 당신에게 달렸습니다.</h2>
+			<p class="t_black align_left_2 maintext">시간을 되돌린 다음, 당신이 원하는 일들을 하시길 바랍니다. 부와 명예를 축적할 수도, 이어지지 못했던 인연을 다시 이어지게 할 수도, 사랑했던 가족과 다시 한번 마지막 시간을 보낼 수도, 누군가의 사고나 죽음을 막을 수도 있습니다.</p>
+
+			<div class="wrap photo-wrapper">
+		        <!-- 첫 번째 줄: 이미지 배치와 동일하게 5개 -->
+		        <div class="photo p1"><img src="1.jpg"></div>
+		        <div class="photo p2"><img src="2.jpg"></div>
+		        <div class="photo p3"><img src="3.jpg"></div>
+		        <div class="photo p4"><img src="4.jpg"></div>
+		        <div class="photo p5"><img src="5.jpg"></div>
+		        
+		        <!-- 두 번째 줄: 아래쪽 5개 -->
+		        <div class="photo p6"><img src="6.jpg"></div>
+		        <div class="photo p7"><img src="7.jpg"></div>
+		        <div class="photo p8"><img src="8.jpg"></div>
+		        <div class="photo p9"><img src="9.jpg"></div>
+		        <div class="photo p10"><img src="10.jpg"></div>
+		    </div>
+		</div>
+	</section>
+	<section id="warning" class="warn-bg-sequence-section warn_bg ">
+		<div class="wrap">
+			<h2 class="align_right_2 HeirOfLight reveal">신중히 생각하세요.</h2>
+			<p class="align_right_2 maintext reveal">이 시계의 능력은 단순한 능력이 아니라 큰 대가가 따릅니다. 그 대가를 온전히 감당할 수 있을 때 사용하세요. 또한 사용 후 후회해도 소용없습니다.</p>
+		</div>
+	</section>
+	<section>
+		<div class="animation-group">
+			<div class="animation-item unifrakturmaguntia-regular">RETURNING TO THE PAST CHANGE THE FURURE BUT YOU WILL PAY THE PRICE</div>
+		</div>
+		<div id="useBtn" class="button">
+			<h3>사용하겠습니다</h3>
+		</div>
+	</section>
+	<footer class="footer-bg">
+        <div class="wrap t_white">
+            <div class="footer-top">
+            	<div class="footer_title">
+                	<h3 class="unifrakturmaguntia-regular">Ouroborus<br>Watch</h3>
+           		</div>
+            	<div class="footer_align_right">
+            		<p>This watch is inspired by Japanese novel [死にたがりな少女の自殺を邪魔して、遊びにつれていく話 - 星火燎原] [One Day, You Entered My Death - Seika Ryogen] <br>이 시계는 일본 소설 [어느 날, 내 죽음에 네가 들어왔다. - 세이카 료겐] 에서 따왔습니다.
+           	 		</p>
+            	</div>
+            </div>
+            <div class="footer_copyright">
+                <p>Copyright © 2026 AhnSangJun. All rights reserved.</p>
+                <p>2026 SEOULTECH Web Interaction Design</p>
+            </div>
+        </div>
+    </footer>
+    <div id="videoOverlay" class="video-overlay">
+	    <div class="video-content">
+	        <video id="myVideo" width="100%">
+	            <source src="Countdown.mp4" type="video/mp4">
+	        </video>
+	        <button id="closeVideo" class="close-btn">x</button>
+	    </div>
+	</div>
+    <script>
+
+// 시계 모션
+window.addEventListener('scroll', function() {
+    const container = document.querySelector('.watch-animation-container');
+    const watch = document.querySelector('.rotating-watch');
+    
+    if (!container || !watch) return;
+
+    // 컨테이너가 화면 상단에 닿았을 때부터 계산 시작
+    const rect = container.getBoundingClientRect();
+    const scrollStart = container.offsetTop;
+    const scrollHeight = container.offsetHeight - window.innerHeight;
+    
+    // 현재 스크롤 위치에서 컨테이너 시작점을 뺀 값
+    let currentScroll = window.scrollY - scrollStart;
+    
+    // 0과 1 사이의 진행도 (상단 바가 화면에 붙은 후부터 동작)
+    let progress = currentScroll / scrollHeight;
+    progress = Math.max(0, Math.min(1, progress));
+
+    if (progress >= 0 && progress <= 1) {
+        // 이미지 2의 각도와 크기 반영 (용두가 4~5시 방향)
+        const startAngle = -180;
+        const endAngle = 110; 
+        const rotation = startAngle + (progress * (Math.abs(startAngle) + endAngle));
+        
+        // 이미지 2처럼 시계 하단이 검정 바에 걸쳐지는 위치 (68% 지점)
+        // 120% (바닥 아래 숨음) -> 68% (디자인 상의 멈춤 위치)
+        const moveTop = 120 - (progress * 52); 
+
+        watch.style.top = moveTop + '%';
+        watch.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+    }
+});
+
+// devil
+window.addEventListener('scroll', () => {
+    // 해당 섹션 요소 가져오기
+    const section = document.querySelector('.warn-bg-sequence-section');
+    if (!section) return;
+
+    // 전체 이미지 레이어 가져오기
+    const layers = section.querySelectorAll('.bg-layer');
+    const totalLayers = layers.length;
+
+    // 섹션의 스크롤 진행률 계산 (0 ~ 1)
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    const windowHeight = window.innerHeight;
+    const scrollTop = window.scrollY;
+
+    let scrollFraction = (scrollTop - sectionTop) / (sectionHeight - windowHeight);
+
+    // 범위 제한 (0 ~ 1)
+    if (scrollFraction < 0) scrollFraction = 0;
+    if (scrollFraction > 1) scrollFraction = 1;
+
+    // 진행률에 비례하여 활성화할 이미지 인덱스 계산 (0 ~ totalLayers - 1)
+    const activeIndex = Math.min(
+        Math.floor(scrollFraction * totalLayers),
+        totalLayers - 1
+    );
+
+    // 계산된 인덱스의 이미지만 보여주고 나머지는 숨김
+    layers.forEach((layer, index) => {
+        if (index === activeIndex) {
+            layer.classList.add('active');
+        } else {
+            layer.classList.remove('active');
+        }
+    });
+});
+
+
+// scroll
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active'); // 화면에 걸리면 바로 애니메이션 시작!
+        }
+    });
+}, { threshold: 0.1 }); // 10%만 보여도 바로 실행
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+
+// clock scale
+window.addEventListener('load', function() {
+    // 효과를 적용할 이미지 클래스들을 배열로 지정
+    const watchClasses = ['.main-watch', '.triple-watch'];
+
+    watchClasses.forEach(className => {
+        const watches = document.querySelectorAll(className);
+        
+        watches.forEach(watch => {
+            // 1. 초기 트랜지션 설정 (부드러운 움직임)
+            watch.style.transition = "transform 0.4s ease-out, filter 0.4s ease-out";
+            watch.style.cursor = "pointer";
+
+            // 2. 마우스를 올렸을 때
+            watch.addEventListener('mouseenter', function() {
+                // 기존에 적용된 translateY(-50%)를 유지하면서 scale만 추가
+                this.style.transform = "translateY(-50%) scale(1.1)";
+                this.style.filter = "brightness(1.1)";
+                this.style.zIndex = "100"; // 일시적으로 맨 위로 올림
+            });
+
+            // 3. 마우스를 뗐을 때
+            watch.addEventListener('mouseleave', function() {
+                // 원래 상태로 복구
+                this.style.transform = "translateY(-50%) scale(1)";
+                this.style.filter = "brightness(1)";
+                this.style.zIndex = ""; // 원래 z-index로 복구
+            });
+        });
+    });
+});
+
+// countdown
+document.addEventListener("DOMContentLoaded", function() {
+    const useBtn = document.getElementById('useBtn');
+    const videoOverlay = document.getElementById('videoOverlay');
+    const myVideo = document.getElementById('myVideo');
+    const closeBtn = document.getElementById('closeVideo');
+
+    // 1. 버튼 클릭 시 영상 띄우기
+    if (useBtn) {
+        useBtn.addEventListener('click', function() {
+            videoOverlay.style.display = 'flex';
+            myVideo.play(); // 영상 자동 재생
+        });
+    }
+
+    // 2. 닫기 버튼 클릭 시 영상 숨기기
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            videoOverlay.style.display = 'none';
+            myVideo.pause(); // 영상 일시 정지
+            myVideo.currentTime = 0; // 영상 재생 시점 초기화
+        });
+    }
+
+    // 3. 배경 클릭 시에도 닫히게 설정 (선택 사항)
+    videoOverlay.addEventListener('click', function(e) {
+        if (e.target === videoOverlay) {
+            closeBtn.click();
+        }
+    });
+});
+
+
+// cursor
+const follower = document.querySelector('.cursor-follower');
+    
+    let mouseX = 0; // 실제 마우스 위치
+    let mouseY = 0;
+    let followerX = 0; // 원의 현재 위치
+    let followerY = 0;
+
+    // 마우스 움직임 감지
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function animate() {
+        // 부드러운 추적 로직 (0.1은 속도이며, 숫자가 작을수록 더 느리게 따라옴)
+        followerX += (mouseX - followerX) * 0.1;
+        followerY += (mouseY - followerY) * 0.1;
+
+        follower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    const video = document.getElementById('opening-video');
+const videoContainer = document.getElementById('video-container');
+const mainContent = document.getElementById('top');
+
+video.addEventListener('timeupdate', function() {
+ 
+    const fadeStart = video.duration - 2;
+
+    if (video.currentTime >= fadeStart) {
+
+        videoContainer.classList.add('fade-out');
+
+        mainContent.classList.add('fade-in');
+    }
+});
+
+video.addEventListener('ended', function() {
+    setTimeout(() => {
+        videoContainer.style.display = 'none';
+    }, 2000); 
+});
+	</script>
+
+	<svg style="display:none;">
+  <filter id="rugged-filter">
+    <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" result="noise" />
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
+  </filter>
+</svg>
+
+</body>
+</html>
